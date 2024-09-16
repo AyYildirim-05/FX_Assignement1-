@@ -1,4 +1,4 @@
-package edu.vanier.distanceCalculator;
+package edu.vanier.distanceCalculator.ui;
 
 
 public class MainApp {
