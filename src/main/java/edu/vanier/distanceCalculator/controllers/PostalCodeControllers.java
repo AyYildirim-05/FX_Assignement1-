@@ -20,9 +20,14 @@ public class PostalCodeControllers {
     public static ArrayList<PostalCode> postalCodesArray = new ArrayList<>();
     public static HashMap<String, PostalCode> postalCodesMap = new HashMap<>();
 
-    public static double distanceHaversine(double lat1, double lon1, double lat2, double lon2) {
-        double latDistance = Math.toRadians(lat2 - lat1);
-        double lonDistance = Math.toRadians(lon2 - lon1);
+    public static double distanceHaversine(double latitude1, double longitude1, double latitude2, double longitude2) {
+        double lat1 = Math.toRadians(latitude1);
+        double lat2 = Math.toRadians(latitude2);
+        double lon1 = Math.toRadians(longitude1);
+        double lon2 = Math.toRadians(longitude2);
+
+        double latDistance = lat2 - lat1;
+        double lonDistance = lon2 - lon1;
 
         // Inside part of haversine formula
         double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
@@ -46,10 +51,9 @@ public class PostalCodeControllers {
                 postalCodesArray.add(entry.getValue());
             }
         }
-
     }
 
-    public static void parsePostalCodes() {
+    public static void csvParsePostalCodes() {
         try {
             String csvPath = Driver.class.getResource(csvFilePath).getFile();
 
@@ -59,16 +63,33 @@ public class PostalCodeControllers {
                 String id = nextLine[0];
                 String country = nextLine[1];
                 String postalCode = nextLine[2];
-                String province = nextLine[3] + ", " + nextLine[4];
-                double latitude = Double.parseDouble(nextLine[5]);
-                double longitude = Double.parseDouble(nextLine[6]);
+                String province = nextLine[nextLine.length - 3];
+                double latitude = Double.parseDouble(nextLine[nextLine.length - 2]);
+                double longitude = Double.parseDouble(nextLine[nextLine.length - 1]);
 
                 PostalCode codeInstance = new PostalCode(id, country, postalCode, province, latitude, longitude);
-
                 postalCodesMap.put(postalCode, codeInstance);
             }
         } catch (CsvValidationException | IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public static ArrayList<Double> parseLatAndLong(String postalCode) {
+        ArrayList<Double> list = new ArrayList<>();
+        for (Map.Entry<String, PostalCode> entry : postalCodesMap.entrySet()) {
+            String key = entry.getKey();
+
+            if (postalCode.equalsIgnoreCase(key)) {
+                list.add(entry.getValue().getLatitude());
+                list.add(entry.getValue().getLongitude());
+            }
+        }
+        return list;
+    }
+
+    public static int doesExist(String code) {
+        return 1;
+    }
+    //Todo: should it return integer or postalCode object
 }
