@@ -17,7 +17,6 @@ import java.util.Map;
 public class PostalCodeControllers {
     public static final double radius = 6371;
     final static String csvFilePath = "/data/postalcodes.csv";
-    public static ArrayList<PostalCode> postalCodesArray = new ArrayList<>();
     public static HashMap<String, PostalCode> postalCodesMap = new HashMap<>();
 
     public static double distanceHaversine(double latitude1, double longitude1, double latitude2, double longitude2) {
@@ -44,7 +43,7 @@ public class PostalCodeControllers {
         String postal1 = postalCode1.toUpperCase();
         String postal2 = postalCode2.toUpperCase();
 
-        if (!postalCodesMap.containsKey(postal1) && !postalCodesMap.containsKey(postal2)) {
+        if (doesExist(postal1) && doesExist(postalCode2)) {
             return 0;
         }
 
@@ -57,7 +56,7 @@ public class PostalCodeControllers {
         String postal = postalCodeString.toUpperCase();
         radius = radius * 1000;
 
-        if (!postalCodesMap.containsKey(postal)) {
+        if (doesExist(postal)) {
             return;
         }
         PostalCode basePostalCode = postalCodesMap.get(postal);
@@ -112,8 +111,10 @@ public class PostalCodeControllers {
         return list;
     }
 
-    public static int doesExist(String code) {
-        return 1;
+    public static boolean doesExist(String code) {
+        if (!postalCodesMap.containsKey(code)) {
+            return false;
+        }
+        return true;
     }
-    //Todo: should it return integer or postalCode object
 }
