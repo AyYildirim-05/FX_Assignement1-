@@ -1,5 +1,10 @@
 package edu.vanier.distanceCalculator.models;
 
+/**
+ * Java class that defines the postal code objects
+ *
+ * @author ahmetyusufyildirim
+ */
 public class PostalCode {
     String id;
     String country;
@@ -8,6 +13,15 @@ public class PostalCode {
     double latitude;
     double longitude;
 
+    /**
+     * Method that initializes a PostalCode object's fields with the provided parameters.
+     * @param id the id of the PostalCode
+     * @param country the country where the PostalCode belongs to
+     * @param postalCode the postal code value of the PostalCode
+     * @param province the province where the PostalCode belongs to
+     * @param latitude the latitude of the PostalCode
+     * @param longitude the longitude of the PostalCode
+     */
     public PostalCode(String id, String country, String postalCode, String province, double latitude, double longitude) {
         this.id = id;
         this.country = country;
@@ -17,56 +31,27 @@ public class PostalCode {
         this.longitude = longitude;
     }
 
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
+    /**
+     * Method that gets the latitude of a postal code object
+     * @return nothing
+     */
     public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
+    /**
+     * Method that gets the longitude of a postal code object
+     * @return nothing
+     */
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
+    /**
+     * Returns a string representation of the object which includes class name
+     * and the values of the object's fields.
+     * @return string representing a postal code object
+     */
     @Override
     public String toString() {
         return "PostalCode{" +

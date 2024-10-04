@@ -20,6 +20,12 @@ import java.util.function.Consumer;
 
 import static edu.vanier.distanceCalculator.controllers.PostalCodeControllers.postalCodesMap;
 
+/**
+ * Class that creates the GUI application
+ * and allows user interaction while also defining the nature of those interactions
+ *
+ * @author ahmetyusufyildirim
+ */
 public class Driver extends Application {
 
     public static ObservableList<PostalCode> data = FXCollections.observableArrayList();
@@ -27,16 +33,47 @@ public class Driver extends Application {
         launch(args);
         System.out.println("jl");
     }
+
+    /**
+     * Method that for a given string, checks whether it is a double.
+     * If successful, it returns true; otherwise, it returns false.
+     * @param str entered string.
+     * @return boolean value that corresponds with its nature.
+     */
+    public static boolean isDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Method that parses through the csv file before creating the GUI application.
+     */
     @Override
     public void init() {
         PostalCodeControllers.csvParsePostalCodes();
     }
 
+    /**
+     * Method that allows the GUI application to be created
+     *
+     * @param primaryStage the primary stage for this application, onto which
+     *                     the application scene can be set.
+     *                     Applications may create other stages, if needed, but they will not be
+     *                     primary stages.
+     */
     @Override
     public void start(Stage primaryStage) {
         createMainPage(primaryStage);
     }
 
+    /**
+     * Method that creates the main menu page of the GUI application.
+     * @param primaryStage the stage created with the help of the start method.
+     */
     public void createMainPage(Stage primaryStage) {
         VBox vBox = new VBox();
         vBox.setAlignment(javafx.geometry.Pos.CENTER);
@@ -98,6 +135,10 @@ public class Driver extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Method that creates the scene containing the location calculating scene
+     * while also simultaneously implementing GUI logic.
+     */
     public void createLocation() {
         Stage secondaryStage2 =  new Stage();
         secondaryStage2.initModality(Modality.APPLICATION_MODAL);
@@ -134,7 +175,6 @@ public class Driver extends Application {
         computeButton.setOnAction(event -> {
             String pointA = fromField.getText().toUpperCase();
             String radius = radiusField.getText();
-            double area = Double.parseDouble(radius);
             if (pointA.isEmpty() || radius.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initModality(Modality.APPLICATION_MODAL);
@@ -147,14 +187,14 @@ public class Driver extends Application {
                 alert.setTitle("Not existing value.");
                 alert.setContentText("The entered postal code does not exist! Please enter again.");
                 alert.showAndWait();
-            } else if (!isDouble(radius)) {
+            } else if (!isDouble(String.valueOf(Double.parseDouble(radius)))) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initModality(Modality.APPLICATION_MODAL);
                 alert.setTitle("Parsing error");
                 alert.setContentText("The entered radius is not a number!");
                 alert.showAndWait();
             }
-
+            double area = Double.parseDouble(radius);
             PostalCodeControllers.nearbyLocations(data, pointA, area);
             secondaryStage2.close();
         });
@@ -169,6 +209,10 @@ public class Driver extends Application {
         secondaryStage2.show();
     }
 
+    /**
+     * Method that creates the scene of the distance calculator while also simultaneously implementing GUI logic.
+     * @param callback returns the result of the calculation to the main menu.
+     */
     public void createDistance(Consumer<Double> callback) {
         Stage secondaryStage1 = new Stage();
         secondaryStage1.initModality(Modality.APPLICATION_MODAL);
@@ -205,6 +249,7 @@ public class Driver extends Application {
         computeButton.setOnAction(event -> {
             String pointA = pointAField.getText();
             String pointB = pointBField.getText();
+            double num;
 
             if (pointA.isEmpty() || pointB.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -212,17 +257,14 @@ public class Driver extends Application {
                 alert.setTitle("Please enter all the values");
                 alert.setContentText("Please enter all the boxes.");
                 alert.showAndWait();
-            }
-
-            double num = PostalCodeControllers.haversineCalculator(pointA, pointB);
-
-            if (num == 0) {
+            } else if (PostalCodeControllers.haversineCalculator(pointA, pointB) == 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initModality(Modality.APPLICATION_MODAL);
                 alert.setTitle("Not existing value.");
                 alert.setContentText("The entered postal code does not exist! Please enter again.");
                 alert.showAndWait();
             } else {
+                num = PostalCodeControllers.haversineCalculator(pointA, pointB);
                 callback.accept(num);
                 secondaryStage1.close();
             }
@@ -236,15 +278,6 @@ public class Driver extends Application {
         secondaryStage1.setScene(scene);
         secondaryStage1.setTitle("Point Distance Calculator");
         secondaryStage1.show();
-    }
-
-    public static boolean isDouble(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
 }
