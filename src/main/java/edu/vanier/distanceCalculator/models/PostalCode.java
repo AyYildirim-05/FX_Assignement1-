@@ -17,6 +17,8 @@ public class PostalCode {
         this.longitude = longitude;
     }
 
+
+
     public String getId() {
         return id;
     }

@@ -5,6 +5,7 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 import edu.vanier.distanceCalculator.models.PostalCode;
 import edu.vanier.distanceCalculator.tests.Driver;
+import javafx.collections.ObservableList;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +15,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class PostalCodeControllers {
-
     public static final double radius = 6371;
     final static String csvFilePath = "/data/postalcodes.csv";
     public static ArrayList<PostalCode> postalCodesArray = new ArrayList<>();
@@ -40,15 +40,39 @@ public class PostalCodeControllers {
         return radius * c;
     }
 
-    public static void nearbyLocations(PostalCode postalCode, double radius) {
-        String postal = postalCode.getPostalCode().toUpperCase();
-        Iterator<Map.Entry<String, PostalCode>> iterator = postalCodesMap.entrySet().iterator();
+    public static double haversineCalculator(String postalCode1,String postalCode2){
+        String postal1 = postalCode1.toUpperCase();
+        String postal2 = postalCode2.toUpperCase();
 
-        while (iterator.hasNext()) {
-            Map.Entry<String, PostalCode> entry = iterator.next();
-            double distance = distanceHaversine(postalCode.getLatitude(), postalCode.getLongitude(), entry.getValue().getLatitude(), entry.getValue().getLongitude());
+        if (!postalCodesMap.containsKey(postal1) && !postalCodesMap.containsKey(postal2)) {
+            return 0;
+        }
+
+        ArrayList<Double> list1 = parseLatAndLong(postal1);
+        ArrayList<Double> list2 = parseLatAndLong(postal2);
+
+        return distanceHaversine(list1.get(0), list1.get(1), list2.get(0), list2.get(1));
+    }
+    public static void nearbyLocations(ObservableList<PostalCode> storage, String postalCodeString, double radius) {
+        String postal = postalCodeString.toUpperCase();
+        radius = radius * 1000;
+
+        if (!postalCodesMap.containsKey(postal)) {
+            return;
+        }
+        PostalCode basePostalCode = postalCodesMap.get(postal);
+
+        for (Map.Entry<String, PostalCode> entry : postalCodesMap.entrySet()) {
+            PostalCode currentPostalCode = entry.getValue();
+            double distance = distanceHaversine(
+                    basePostalCode.getLatitude(),
+                    basePostalCode.getLongitude(),
+                    currentPostalCode.getLatitude(),
+                    currentPostalCode.getLongitude()
+            );
+
             if (distance <= radius) {
-                postalCodesArray.add(entry.getValue());
+                storage.add(currentPostalCode);
             }
         }
     }
