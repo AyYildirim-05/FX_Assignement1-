@@ -119,6 +119,7 @@ public class Driver extends Application {
 
         tableView.getColumns().addAll(idColumn, countryColumn, postalCodeColumn, provinceColumn, latitudeColumn, longitudeColumn);
 
+        tableView.getItems().clear();
         tableView.setItems(data);
 
         vBox.getChildren().addAll(topBox, distanceBox);

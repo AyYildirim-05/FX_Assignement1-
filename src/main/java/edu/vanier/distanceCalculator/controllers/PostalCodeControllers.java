@@ -73,8 +73,7 @@ public class PostalCodeControllers {
      * @param radius (in km) the entered value that will define which objects the program will return.
      */
     public static void nearbyLocations(ObservableList<PostalCode> storage, String postalCodeString, double radius) {
-        // Todo: dont add a similar object
-        // Todo: dont add the entered postalcode
+
         String postal = postalCodeString.toUpperCase();
 
         if (!postalCodesMap.containsKey(postal)) {
@@ -86,7 +85,7 @@ public class PostalCodeControllers {
             if (!basePostalCode.equals(entry)) {
                 PostalCode currentPostalCode = entry.getValue();
                 double distance = distanceHaversine(basePostalCode.getLatitude(), basePostalCode.getLongitude(), currentPostalCode.getLatitude(), currentPostalCode.getLongitude());
-                if (distance <= radius) {
+                if (distance <= radius && !storage.contains(currentPostalCode)) {
                     storage.add(currentPostalCode);
                 }
             }
