@@ -5,10 +5,8 @@ import edu.vanier.distanceCalculator.models.PostalCode;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -136,7 +134,7 @@ public class Driver extends Application {
         Button computeButton = new Button("Compute");
         buttonBox.getChildren().addAll(cancelButton, computeButton);
 
-        cancelButton.setOnAction(this::closeScene);
+        cancelButton.setOnAction(event -> {secondaryStage2.close();});
         computeButton.setOnAction(event -> {
             String pointA = fromField.getText();
             String radius = radiusField.getText();
@@ -204,7 +202,7 @@ public class Driver extends Application {
         Button computeButton = new Button("Compute");
         buttonBox.getChildren().addAll(cancelButton, computeButton);
 
-        cancelButton.setOnAction(this::closeScene);
+        cancelButton.setOnAction(event -> {secondaryStage1.close();});
         computeButton.setOnAction(event -> {
             String pointA = pointAField.getText();
             String pointB = pointBField.getText();
@@ -231,12 +229,6 @@ public class Driver extends Application {
         secondaryStage1.setScene(scene);
         secondaryStage1.setTitle("Point Distance Calculator");
         secondaryStage1.show();
-    }
-
-    private void closeScene(ActionEvent event){
-        final Node source = (Node) event.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
     }
 
     public static boolean isDouble(String str) {
