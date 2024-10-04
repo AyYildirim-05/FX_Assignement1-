@@ -134,7 +134,7 @@ public class Driver extends Application {
         Button computeButton = new Button("Compute");
         buttonBox.getChildren().addAll(cancelButton, computeButton);
 
-        cancelButton.setOnAction(event -> {secondaryStage2.close();});
+        cancelButton.setOnAction(event -> secondaryStage2.close());
         computeButton.setOnAction(event -> {
             String pointA = fromField.getText();
             String radius = radiusField.getText();
@@ -202,7 +202,7 @@ public class Driver extends Application {
         Button computeButton = new Button("Compute");
         buttonBox.getChildren().addAll(cancelButton, computeButton);
 
-        cancelButton.setOnAction(event -> {secondaryStage1.close();});
+        cancelButton.setOnAction(event -> secondaryStage1.close());
         computeButton.setOnAction(event -> {
             String pointA = pointAField.getText();
             String pointB = pointBField.getText();
