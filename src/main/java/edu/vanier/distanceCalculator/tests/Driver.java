@@ -32,24 +32,20 @@ public class Driver extends Application {
         PostalCodeControllers.csvParsePostalCodes();
     }
 
-    public void stop() {
-        System.out.println("Shutting down application...");
-    }
     @Override
     public void start(Stage primaryStage) {
         createMainPage(primaryStage);
     }
 
     public void createMainPage(Stage primaryStage) {
+        VBox vBox = new VBox();
+        vBox.setAlignment(javafx.geometry.Pos.CENTER);
 
         HBox topBox = new HBox(50);
         topBox.setAlignment(javafx.geometry.Pos.CENTER);
         Button distanceButton = new Button("Compute Distance");
         Button locationButton = new Button("Search Locations");
         topBox.getChildren().addAll(distanceButton, locationButton);
-
-        VBox centerBox = new VBox();
-        centerBox.setAlignment(javafx.geometry.Pos.CENTER);
 
         HBox distanceBox = new HBox(10);
         distanceBox.setAlignment(javafx.geometry.Pos.CENTER);
@@ -88,16 +84,15 @@ public class Driver extends Application {
 
         tableView.setItems(data);
 
-        centerBox.getChildren().addAll(distanceBox, tableView);
+        vBox.getChildren().addAll(topBox, distanceBox);
         distanceButton.setOnAction(e -> createDistance(result -> distanceField.setText(Double.toString(result))));
         locationButton.setOnAction(e -> createLocation());
 
-
         BorderPane root = new BorderPane();
-        root.setTop(topBox);
-        root.setCenter(centerBox);
+        root.setTop(vBox);
+        root.setCenter(tableView);
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Distance Calculator");
         primaryStage.show();
@@ -105,6 +100,7 @@ public class Driver extends Application {
 
     public void createLocation() {
         Stage secondaryStage2 =  new Stage();
+        secondaryStage2.initModality(Modality.APPLICATION_MODAL);
         BorderPane root = new BorderPane();
 
         VBox centerBox = new VBox(10);
@@ -136,26 +132,28 @@ public class Driver extends Application {
 
         cancelButton.setOnAction(event -> secondaryStage2.close());
         computeButton.setOnAction(event -> {
-            String pointA = fromField.getText();
+            String pointA = fromField.getText().toUpperCase();
             String radius = radiusField.getText();
-
-            if (!postalCodesMap.containsKey(pointA)) {
+            double area = Double.parseDouble(radius);
+            if (pointA.isEmpty() || radius.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initModality(Modality.APPLICATION_MODAL);
-                alert.setTitle("");
+                alert.setTitle("Please enter all the values");
+                alert.setContentText("Please enter all the boxes.");
+                alert.showAndWait();
+            } else if (!postalCodesMap.containsKey(pointA)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initModality(Modality.APPLICATION_MODAL);
+                alert.setTitle("Not existing value.");
                 alert.setContentText("The entered postal code does not exist! Please enter again.");
                 alert.showAndWait();
-            }
-
-            if (!isDouble(radius)) {
+            } else if (!isDouble(radius)) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initModality(Modality.APPLICATION_MODAL);
                 alert.setTitle("Parsing error");
                 alert.setContentText("The entered radius is not a number!");
                 alert.showAndWait();
             }
-
-            double area = Double.parseDouble(radius);
 
             PostalCodeControllers.nearbyLocations(data, pointA, area);
             secondaryStage2.close();
@@ -165,7 +163,7 @@ public class Driver extends Application {
 
         root.setCenter(centerBox);
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 650, 400);
         secondaryStage2.setScene(scene);
         secondaryStage2.setTitle("Distance Radius Calculator");
         secondaryStage2.show();
@@ -173,6 +171,7 @@ public class Driver extends Application {
 
     public void createDistance(Consumer<Double> callback) {
         Stage secondaryStage1 = new Stage();
+        secondaryStage1.initModality(Modality.APPLICATION_MODAL);
         BorderPane root = new BorderPane();
 
         VBox centerBox = new VBox(10);
@@ -207,13 +206,21 @@ public class Driver extends Application {
             String pointA = pointAField.getText();
             String pointB = pointBField.getText();
 
+            if (pointA.isEmpty() || pointB.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initModality(Modality.APPLICATION_MODAL);
+                alert.setTitle("Please enter all the values");
+                alert.setContentText("Please enter all the boxes.");
+                alert.showAndWait();
+            }
+
             double num = PostalCodeControllers.haversineCalculator(pointA, pointB);
 
             if (num == 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initModality(Modality.APPLICATION_MODAL);
-                alert.setTitle("Not existing value");
-                alert.setContentText("The postal code does not exist! Please do it again.");
+                alert.setTitle("Not existing value.");
+                alert.setContentText("The entered postal code does not exist! Please enter again.");
                 alert.showAndWait();
             } else {
                 callback.accept(num);

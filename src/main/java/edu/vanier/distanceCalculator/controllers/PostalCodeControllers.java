@@ -11,39 +11,30 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class PostalCodeControllers {
-    public static final double radius = 6371;
+    public static final double radius = 6371.009;
     final static String csvFilePath = "/data/postalcodes.csv";
     public static HashMap<String, PostalCode> postalCodesMap = new HashMap<>();
 
     public static double distanceHaversine(double latitude1, double longitude1, double latitude2, double longitude2) {
-        double lat1 = Math.toRadians(latitude1);
-        double lat2 = Math.toRadians(latitude2);
-        double lon1 = Math.toRadians(longitude1);
-        double lon2 = Math.toRadians(longitude2);
+        double latDistance = (latitude2 - latitude1) * Math.PI/180;
+        double lonDistance = (longitude2 - longitude1) * Math.PI/180;
+        double lat1 = latitude1 * Math.PI / 180;
+        double lat2 = latitude2 * Math.PI / 180;
 
-        double latDistance = lat2 - lat1;
-        double lonDistance = lon2 - lon1;
+        double inside = Math.sin(Math.pow(latDistance / 2, 2)) + Math.sin(Math.pow(lonDistance / 2, 2)) * Math.cos(lat1) * Math.cos(lat2);
+        double outside = 2*Math.asin(Math.sqrt(inside)) * 6371.009;
 
-        // Inside part of haversine formula
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
-                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-
-        // Outside part of the haversine formula
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        return radius * c;
+        return Math.floor(outside * 100 + .5 ) / 100;
     }
 
     public static double haversineCalculator(String postalCode1,String postalCode2){
         String postal1 = postalCode1.toUpperCase();
         String postal2 = postalCode2.toUpperCase();
 
-        if (doesExist(postal1) && doesExist(postalCode2)) {
+        if (!postalCodesMap.containsKey(postal1) && !postalCodesMap.containsKey(postal2)) {
             return 0;
         }
 
@@ -56,7 +47,7 @@ public class PostalCodeControllers {
         String postal = postalCodeString.toUpperCase();
         radius = radius * 1000;
 
-        if (doesExist(postal)) {
+        if (!postalCodesMap.containsKey(postal)) {
             return;
         }
         PostalCode basePostalCode = postalCodesMap.get(postal);
@@ -109,12 +100,5 @@ public class PostalCodeControllers {
             }
         }
         return list;
-    }
-
-    public static boolean doesExist(String code) {
-        if (!postalCodesMap.containsKey(code)) {
-            return false;
-        }
-        return true;
     }
 }
