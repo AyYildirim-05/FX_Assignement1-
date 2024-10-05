@@ -82,8 +82,8 @@ public class PostalCodeControllers {
         PostalCode basePostalCode = postalCodesMap.get(postal);
 
         for (Map.Entry<String, PostalCode> entry : postalCodesMap.entrySet()) {
-            if (!basePostalCode.equals(entry)) {
-                PostalCode currentPostalCode = entry.getValue();
+            PostalCode currentPostalCode = entry.getValue();
+            if (!basePostalCode.equals(currentPostalCode)) {
                 double distance = distanceHaversine(basePostalCode.getLatitude(), basePostalCode.getLongitude(), currentPostalCode.getLatitude(), currentPostalCode.getLongitude());
                 if (distance <= radius && !storage.contains(currentPostalCode)) {
                     storage.add(currentPostalCode);
