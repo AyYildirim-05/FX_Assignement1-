@@ -223,7 +223,6 @@ public class Driver extends Application {
         centerBox.setAlignment(Pos.CENTER);
         centerBox.setPrefSize(100, 200);
 
-
         HBox pointABox = new HBox();
         pointABox.setPrefSize(200, 100);
         Label pointALabel = new Label("Point A:");

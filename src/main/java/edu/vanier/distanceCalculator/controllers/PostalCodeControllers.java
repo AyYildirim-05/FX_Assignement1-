@@ -19,7 +19,7 @@ import java.util.Map;
  * @author ahmetyusufyildirim
  */
 public class PostalCodeControllers {
-    public static final double radius = 6371.009;
+    public static final double earthRadius = 6371.009;
     final static String csvFilePath = "/data/postalcodes.csv";
     public static HashMap<String, PostalCode> postalCodesMap = new HashMap<>();
 
@@ -30,7 +30,7 @@ public class PostalCodeControllers {
      * @param longitude1 longitude of the fist postal code.
      * @param latitude2  latitude of the fist second code.
      * @param longitude2 longitude of the fist second code.
-     * @return returns the distance in kilometers.
+     * @return the distance in kilometers.
      */
     public static double distanceHaversine(double latitude1, double longitude1, double latitude2, double longitude2) {
         double latDistance = (latitude2 - latitude1) * Math.PI/180;
@@ -38,10 +38,10 @@ public class PostalCodeControllers {
         double lat1 = latitude1 * Math.PI / 180;
         double lat2 = latitude2 * Math.PI / 180;
 
-        double inside = Math.sin(Math.pow(latDistance / 2, 2)) + Math.sin(Math.pow(lonDistance / 2, 2)) * Math.cos(lat1) * Math.cos(lat2);
-        double outside = 2*Math.asin(Math.sqrt(inside)) * 6371.009;
+        double insideSquareRoot = Math.sin(Math.pow(latDistance / 2, 2)) + Math.sin(Math.pow(lonDistance / 2, 2)) * Math.cos(lat1) * Math.cos(lat2);
+        double outsideSquareRoot = 2*Math.asin(Math.sqrt(insideSquareRoot)) * earthRadius;
 
-        return Math.floor(outside * 100 + .5 ) / 100;
+        return Math.floor(outsideSquareRoot * 100 + .5 ) / 100;
     }
 
     /**
