@@ -117,12 +117,14 @@ public class Driver extends Application {
 
         tableView.getColumns().addAll(idColumn, countryColumn, postalCodeColumn, provinceColumn, latitudeColumn, longitudeColumn);
 
-        tableView.getItems().clear();
         tableView.setItems(data);
 
         vBox.getChildren().addAll(topBox, distanceBox);
         distanceButton.setOnAction(e -> createDistance(result -> distanceField.setText(Double.toString(result))));
-        locationButton.setOnAction(e -> createLocation());
+        locationButton.setOnAction(e -> {
+            createLocation();
+            tableView.getItems().clear();
+        });
 
         BorderPane root = new BorderPane();
         root.setTop(vBox);
