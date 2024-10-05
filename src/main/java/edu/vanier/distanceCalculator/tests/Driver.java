@@ -188,7 +188,7 @@ public class Driver extends Application {
                 alert.setTitle("Not existing value.");
                 alert.setContentText("The entered postal code does not exist! Please enter again.");
                 alert.showAndWait();
-            } else if (!isDouble(String.valueOf(Double.parseDouble(radius)))) {
+            } else if (!isDouble(radius)) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.initModality(Modality.APPLICATION_MODAL);
                 alert.setTitle("Parsing error");
