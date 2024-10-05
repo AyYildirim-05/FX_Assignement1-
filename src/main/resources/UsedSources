@@ -7,54 +7,84 @@ JavaFX Layout Managers
 
 
 Online Resources:
-https://stackoverflow.com/questions/49541687/how-can-i-close-my-scene-by-clicking-on-button-in-javafx
 
-https://forums.rpgmakerweb.com/index.php?threads/my-custom-common-event-menu-closes-entirely-in-any-scene-with-cancel-button-instead-of-going-back-one-page-only.162236/
+1. Stack Overflow, "How can I close my scene by clicking on button in JavaFX?" https://stackoverflow.com/questions/49541687/how-can-i-close-my-scene-by-clicking-on-button-in-javafx.
+[Online; accessed 30-Sept-2024].
 
-https://ux.stackexchange.com/questions/17617/close-button-vs-cancel-button
+2.RPG Maker Forums, "My custom common event menu closes entirely in any scene with cancel button instead of going back one page only." https://forums.rpgmakerweb.com/index.php?threads/my-custom-common-event-menu-closes-entirely-in-any-scene-with-cancel-button-instead-of-going-back-one-page-only.162236/.
+[Online; accessed 2-Oct-2024].
 
-https://stackoverflow.com/questions/51189015/intellij-view-property-values-in-code
+3. UX Stack Exchange, "Close button vs Cancel button." https://ux.stackexchange.com/questions/17617/close-button-vs-cancel-button.
+[Online; accessed 30-Sept-2024].
 
-https://www.baeldung.com/java-find-distance-between-points
+4. Stack Overflow, "IntelliJ view property values in code." https://stackoverflow.com/questions/51189015/intellij-view-property-values-in-code.
+[Online; accessed 3-Oct-2024].
 
-https://www.baeldung.com/java-hashmap-multiple-values-per-key#:~:text=One%20common%20solution%20is%20to,multiple%20values%20for%20each%20key.
+5. YouTube, "How to close a scene in JavaFX" https://www.youtube.com/watch?v=UP7u63R0MZU.
+[Online; accessed 2-Oct-2024].
 
-https://beginnersbook.com/2014/07/java-hashmap-iterator-example/
+6. Baeldung, "HashMap Multiple Values per Key in Java." https://www.baeldung.com/java-hashmap-multiple-values-per-key.
+[Online; accessed 19-Sept-2024].
 
-https://www.freecodecamp.org/news/java-iterator-hashmap-how-to-iterate-through-a-hashmap-with-a-loop/
+7. BeginnersBook, "Java HashMap Iterator Example." https://beginnersbook.com/2014/07/java-hashmap-iterator-example/.
+[Online; accessed 20-Sept-2024].
 
-https://en.wikipedia.org/wiki/Haversine_formula
+8. FreeCodeCamp, "How to iterate through a HashMap with a loop." https://www.freecodecamp.org/news/java-iterator-hashmap-how-to-iterate-through-a-hashmap-with-a-loop/.
+[Online; accessed 20-Sept-2024].
 
-https://gluonhq.com/products/scene-builder/#download
+9. Wikipedia, "Haversine formula." https://en.wikipedia.org/wiki/Haversine_formula.
+[Online; accessed 24-Sept-2024].
 
-https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
+10. GluonHQ, "Scene Builder Download." https://gluonhq.com/products/scene-builder/#download.
+[Online; accessed 25-Sept-2024].
 
-https://stackoverflow.com/questions/34425992/gradle-process-command-java-finished-with-non-zero-exit-value-1
+11. Oracle, "Table View in JavaFX." https://docs.oracle.com/javafx/2/ui_controls/table-view.htm.
+[Online; accessed 29-Sept-2024].
 
-https://docs.oracle.com/javafx/scenebuilder/1/get_started/add-list-table-views.htm#:~:text=Select%20the%20Table%20Column%20control,list%20of%20available%20instance%20variables.
+12. Stack Overflow, "Gradle process command 'java' finished with non-zero exit value 1." https://stackoverflow.com/questions/34425992/gradle-process-command-java-finished-with-non-zero-exit-value-1.
+[Online; accessed 1-Oct-2024].
 
-https://stackoverflow.com/questions/16246821/how-to-get-values-and-keys-from-hashmap
+13. Oracle, "Add List and Table Views in JavaFX." https://docs.oracle.com/javafx/scenebuilder/1/get_started/add-list-table-views.htm.
+[Online; accessed 2-Oct-2024].
 
-https://stackoverflow.com/questions/13754214/how-to-use-fxmlloader-load-javafx-2
+14. Stack Overflow, "How to get values and keys from HashMap in Java?" https://stackoverflow.com/questions/16246821/how-to-get-values-and-keys-from-hashmap.
+[Online; accessed 29-Sept-2024].
 
-https://stackoverflow.com/questions/77003028/error-while-opening-intellij-idea-due-to-an-already-running-process
+15. Stack Overflow, "How to use FXMLLoader in JavaFX 2." https://stackoverflow.com/questions/13754214/how-to-use-fxmlloader-load-javafx-2.
+[Online; accessed 1-Oct-2024].
 
-https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
+16. Stack Overflow, "Error while opening IntelliJ IDEA due to an already running process." https://stackoverflow.com/questions/77003028/error-while-opening-intellij-idea-due-to-an-already-running-process.
+[Online; accessed 1-Oct-2024].
 
-https://www.geeksforgeeks.org/convert-string-to-double-in-java/
+17. GeeksforGeeks, "Convert String to Double in Java." https://www.geeksforgeeks.org/convert-string-to-double-in-java/.
+[Online; accessed 30-Sept-2024].
 
-https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TextField.html
+18. Oracle, "TextField class in JavaFX." https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TextField.html.
+[Online; accessed 30-Sept-2024].
 
-https://docs.oracle.com/javafx/scenebuilder/1/get_started/add-list-table-views.htm
+19. Jenkov, "JavaFX Tutorials." https://jenkov.com/tutorials/javafx/index.html.
+[Online; accessed 2-Sept-2024].
 
-https://jenkov.com/tutorials/javafx/index.html
+20. Baeldung, "Java Callback Functions." https://www.baeldung.com/java-callback-functions.
+[Online; accessed 3-Oct-2024].
 
-https://www.baeldung.com/java-callback-functions
+21. Medium, "Public static void getSalary(Consumer<Double> callback)." https://medium.com/@pra4mesh/public-static-void-getsalary-consumer-double-callback-c293a5a042c0.
+[Online; accessed 3-Oct-2024].
 
-https://medium.com/@pra4mesh/public-static-void-getsalary-consumer-double-callback-c293a5a042c0
+22. Medium, "Callback function in Java." https://medium.com/@pra4mesh/callback-function-in-java-20fa48b27797.
+[Online; accessed 3-Oct-2024].
 
-https://medium.com/@pra4mesh/callback-function-in-java-20fa48b27797
+23. vCalc, "Haversine Distance Calculator." https://www.vcalc.com/wiki/vcalc/haversine-distance.
+[Online; accessed 4-Oct-2024].
 
-https://www.vcalc.com/wiki/vcalc/haversine-distance
+24. CodeRanch, "Rounding Double in Java." https://coderanch.com/t/394801/java/rounding-double.
+[Online; accessed 1-Oct-2024].
 
-https://coderanch.com/t/394801/java/rounding-double
+25. Wikipedia, “Haversine formula.” https://en.wikipedia.org/wiki/Haversine_formula.
+[Online; accessed 12-Sept-2024].
+
+26. Opencsv, “Opencsv Users Guide.” http://opencsv.sourceforge.net/.
+[Online; accessed 12-Sept-2024].
+
+27. Oracle, “How to Write Doc Comments for the Javadoc Tool.” https://www.oracle.com/ca-en/technical-resources/articles/java/javadoc-tool.html.
+[Online; accessed 4-Oct-2024]
