@@ -15,9 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.util.function.Consumer;
-
 import static edu.vanier.distanceCalculator.controllers.PostalCodeControllers.postalCodesMap;
 
 /**
@@ -204,7 +202,7 @@ public class Driver extends Application {
 
         root.setCenter(centerBox);
 
-        Scene scene = new Scene(root, 650, 400);
+        Scene scene = new Scene(root, 400, 300);
         secondaryStage2.setScene(scene);
         secondaryStage2.setTitle("Distance Radius Calculator");
         secondaryStage2.show();
@@ -275,7 +273,7 @@ public class Driver extends Application {
 
         root.setCenter(centerBox);
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 400, 300);
         secondaryStage1.setScene(scene);
         secondaryStage1.setTitle("Point Distance Calculator");
         secondaryStage1.show();

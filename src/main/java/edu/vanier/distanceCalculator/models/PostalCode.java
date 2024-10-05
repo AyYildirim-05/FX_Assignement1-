@@ -32,16 +32,48 @@ public class PostalCode {
     }
 
     /**
-     * Method that gets the latitude of a postal code object
-     * @return nothing
+     * Method that gets the id of a PostalCode object
+     * @return String id of the object
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Method that gets the country of a PostalCode object
+     * @return String country of the object
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * Method that gets the postal code of a PostalCode object
+     * @return String postal code of the object
+     */
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    /**
+     * Method that gets the province of a PostalCode object
+     * @return String province of the object
+     */
+    public String getProvince() {
+        return province;
+    }
+
+    /**
+     * Method that gets the latitude of a PostalCode object
+     * @return Double latitude of the object
      */
     public double getLatitude() {
         return latitude;
     }
 
     /**
-     * Method that gets the longitude of a postal code object
-     * @return nothing
+     * Method that gets the longitude of a PostalCode object
+     * @return Double longitude of the object
      */
     public double getLongitude() {
         return longitude;
@@ -50,7 +82,7 @@ public class PostalCode {
     /**
      * Returns a string representation of the object which includes class name
      * and the values of the object's fields.
-     * @return string representing a postal code object
+     * @return string representing a PostalCode object
      */
     @Override
     public String toString() {
